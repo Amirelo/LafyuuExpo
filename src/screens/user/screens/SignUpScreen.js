@@ -5,10 +5,9 @@ import CustomInput from '../../../components/CustomInput';
 import CustomButton from '../../../components/CustomButton';
 import icon_email from '../../../assets/images/systemIcon/24px/Message.png';
 import icon_password from '../../../assets/images/systemIcon/24px/Password.png';
-import icon_google from '../../../assets/images/OtherIcon/Google.png';
-import icon_facebook from '../../../assets/images/OtherIcon/Facebook.png';
+import icon_user from '../../../assets/images/systemIcon/24px/User.png';
 
-const SignUpScreen = () => {
+const SignUpScreen = ({navigation}) => {
   const [fullname, setFullname] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -17,6 +16,9 @@ const SignUpScreen = () => {
   const [passwordStatus, setPasswordStatus] = useState();
   const [confirmPasswordStatus, setConfirmPasswordStatus] = useState();
 
+  const onSignInPress = () => {
+    navigation.goBack();
+  }
   
   return (
     <View style={styles.container}>
@@ -26,11 +28,18 @@ const SignUpScreen = () => {
 
       <CustomInput style={styles.inputFirst}
         placeholder={"Fullname"}
+        imageLink={icon_user}
+        value={fullname}
+        setValue={setFullname}
+        mTop={24}
+         />
+
+      <CustomInput style={styles.inputFirst}
+        placeholder={"Email"}
         imageLink={icon_email}
         value={email}
         setValue={setEmail}
-        mTop={24}
-         />
+      />
 
       <CustomInput
         placeholder={"Password"}
@@ -40,42 +49,26 @@ const SignUpScreen = () => {
         isSecure={true}
         />
 
+      <CustomInput
+        placeholder={"Confirm Password"}
+        imageLink={icon_password}
+        value={confirmPassword}
+        setValue={setConfirmPassword}
+        isSecure={true}
+      />
+
       <CustomButton
-        text={"Sign In"}
+        text={"Sign Up"}
        
       />
 
       <View style={styles.rowContainer}>
-        <View style={styles.line}></View>
-        <Text style={styles.textOption}>OR</Text>
-        <View style={styles.line}></View>
-      </View>
-
-      <CustomButton
-        text={"Login with Google"}
-        imageLink={icon_google}
-        type={"SECONDARY"}
-        />
-
-      <CustomButton
-        text={"Login with Facebook"}
-        imageLink={icon_facebook}
-        type={"SECONDARY"}
-        mTop={8}
-       />
-
-      <CustomButton
-        text={"Forgot password?"}
-        type={"TERTIARY"}
-        mTop={32}
-         />
-
-      <View style={styles.rowContainer}>
-        <Text style={styles.textSignUp}>Don't have an account? </Text>
+        <Text style={styles.textSignUp}>Already have an account? </Text>
         <CustomButton
-          text={"Register"}
+          text={"Sign In"}
           type={"TERTIARY"}
           mTop={8}
+          onPress={onSignInPress}
            />
       </View>
 

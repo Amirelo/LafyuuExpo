@@ -4,9 +4,11 @@ import { TextInput } from 'react-native'
 
 const CustomInput = ({value, setValue, placeholder, imageLink,mTop, isSecure, hasError, inputType}) => {
   const [isSelected, setIsSelected] = useState(false);
+  const [containError, setContainError] = useState(hasError);
   const onTextInputPressIn = () =>{
     setIsSelected(true);
-    hasError=false;
+    setContainError(false);
+    console.warn(hasError);
   }
 
   const onTextInputPressOut = () =>{
@@ -17,7 +19,7 @@ const CustomInput = ({value, setValue, placeholder, imageLink,mTop, isSecure, ha
     <View  style={[
         styles.container,
         mTop ? {marginTop:mTop}: {} ,
-        hasError ==true ? styles.inputFailAuthen : styles.inputNormal,
+        containError ==true ? styles.inputFailAuthen : styles.inputNormal,
         isSelected ? styles.inputSelected : {},
          ]}>
         <Image style={styles.icon} source={imageLink}/>

@@ -35,7 +35,7 @@ const SignInScreen = ({navigation}) => {
         console.warn("Forgot password");
     }
 
-    const onRegisterPress =() =>{
+    const onSignUpPress =() =>{
         navigation.navigate("Sign Up")
     }
 
@@ -99,10 +99,10 @@ const SignInScreen = ({navigation}) => {
             <View style={styles.rowContainer}>
             <Text style = {styles.textSignUp}>Don't have an account? </Text>
             <CustomButton 
-            text={"Register"}
+            text={"Sign Up"}
             type={"TERTIARY"}
             mTop={8}
-            onPress={onRegisterPress}/>
+            onPress={onSignUpPress}/>
             </View>
 
         </View>
