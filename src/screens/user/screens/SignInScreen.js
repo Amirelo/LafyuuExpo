@@ -36,7 +36,7 @@ const SignInScreen = ({navigation}) => {
     }
 
     const onRegisterPress =() =>{
-        console.warn("Register");
+        navigation.navigate("Sign Up")
     }
 
     return (
@@ -46,12 +46,13 @@ const SignInScreen = ({navigation}) => {
             <Text style={styles.textSubHeader}>Sign in to continue</Text>
             
             <CustomInput style={styles.inputFirst}
-                placeholder={"Your Email"}
+                placeholder={"Email"}
                 imageLink={icon_email}
                 value={email}
                 setValue={setEmail}
                 mTop={24} 
-                hasError={status}/>
+                hasError={status}
+                inputType={"email"}/>
 
             <CustomInput
                 placeholder={"Password"}

@@ -2,7 +2,7 @@ import { StyleSheet, Text, View,Image } from 'react-native'
 import React, { useState } from 'react'
 import { TextInput } from 'react-native'
 
-const CustomInput = ({value, setValue, placeholder, imageLink,mTop, isSecure, hasError}) => {
+const CustomInput = ({value, setValue, placeholder, imageLink,mTop, isSecure, hasError, inputType}) => {
   const [isSelected, setIsSelected] = useState(false);
   const onTextInputPressIn = () =>{
     setIsSelected(true);
@@ -26,6 +26,7 @@ const CustomInput = ({value, setValue, placeholder, imageLink,mTop, isSecure, ha
             value={value}
             onChangeText={setValue}
             placeholder={placeholder}
+            inputType={inputType}
             secureTextEntry = {isSecure}
             onFocus={onTextInputPressIn}
             onBlur={onTextInputPressOut}
