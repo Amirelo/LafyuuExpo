@@ -11,9 +11,16 @@ import icon_facebook from '../../../assets/images/OtherIcon/Facebook.png';
 const SignInScreen = ({navigation}) => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const [status, setStatus] = useState();
 
     const onSignInPress =() =>{
         console.warn("Sign In");
+        (email == 'a' && password == 'a') ? 
+            [console.warn("Login success"),
+            setStatus(false) ]
+        : 
+            [console.warn("Login fail"),
+            setStatus(true)]
     }
 
     const onGoogleSignInPress =() =>{
@@ -37,19 +44,26 @@ const SignInScreen = ({navigation}) => {
             <Image style={styles.logo} source={Logo} />
             <Text style={styles.textHeader}>Welcome to Lafyuu</Text>
             <Text style={styles.textSubHeader}>Sign in to continue</Text>
+            
             <CustomInput style={styles.inputFirst}
                 placeholder={"Your Email"}
                 imageLink={icon_email}
                 value={email}
                 setValue={setEmail}
-                mTop={24} />
+                mTop={24} 
+                hasError={status}/>
 
             <CustomInput
                 placeholder={"Password"}
                 imageLink={icon_password}
                 value={password}
                 setValue={setPassword}
-                isSecure={true} />
+                isSecure={true}
+                hasError={status} />
+            {status == true ? 
+            <Text style={styles.textError}>Oops! Username or Password is incorrect</Text>
+            : 
+            <></>}
 
             <CustomButton 
             text={"Sign In"}
@@ -148,6 +162,14 @@ const styles = StyleSheet.create({
         fontSize:12,
         letterSpacing:0.5,
         fontWeight:700
+    },
+    
+    textError:{
+        color:'#FB7181',
+        fontWeight:700,
+        marginTop:8,
+        alignSelf:'flex-start',
+        paddingStart: '5%'
     }
     
     

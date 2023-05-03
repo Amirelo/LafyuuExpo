@@ -65,7 +65,6 @@ const styles = StyleSheet.create({
     },
     textStyle_SECONDARY:{
         color:'#9098B1',
-        width: '84%',
     },
     textStyle_TERTIARY:{
         color:'#40BFFF',
@@ -76,5 +75,6 @@ const styles = StyleSheet.create({
     image:{
         alignSelf:'center',
         marginHorizontal: 16,
+        position:'absolute'
     }
 })
