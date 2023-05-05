@@ -2,7 +2,7 @@ import { Button, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-n
 import React from 'react'
 
 
-const CustomButton = ({text, imageLink, type, mTop, onPress}) => {
+const CustomButton = ({text, imageLink, type, mTop, onPress, fontSize}) => {
   return (
     <TouchableOpacity 
         onPress = {onPress}
@@ -17,7 +17,8 @@ const CustomButton = ({text, imageLink, type, mTop, onPress}) => {
         <Text
             style={[
                 styles.text,
-                type ? styles[`textStyle_${type}`] : styles['textStyle_PRIMARY'] ]} 
+                type ? styles[`textStyle_${type}`] : styles['textStyle_PRIMARY'],
+                fontSize ? {fontSize:fontSize}: {} ]} 
                 >{text}</Text>
     </TouchableOpacity>
   )
@@ -52,6 +53,7 @@ const styles = StyleSheet.create({
     buttonStyle_TERTIARY:{
         width:'auto',
         height:'auto',
+        maxHeight:20,
     },
     text:{
         fontSize:14,

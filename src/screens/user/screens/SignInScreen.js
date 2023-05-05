@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Logo from '../../../assets/images/logo.png';
 import CustomInput from '../../../components/CustomInput';
 import CustomButton from '../../../components/CustomButton';
@@ -7,35 +7,42 @@ import icon_email from '../../../assets/images/systemIcon/24px/Message.png';
 import icon_password from '../../../assets/images/systemIcon/24px/Password.png';
 import icon_google from '../../../assets/images/OtherIcon/Google.png';
 import icon_facebook from '../../../assets/images/OtherIcon/Facebook.png';
+import { AuthContext } from '../../../components/AuthContext';
 
-const SignInScreen = ({navigation}) => {
+const SignInScreen = ({ navigation }) => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [status, setStatus] = useState();
+    const { signIn } = useContext(AuthContext);
 
-    const onSignInPress =() =>{
+    const onSignInPress = () => {
         console.warn("Sign In");
-        (email == 'a' && password == 'a') ? 
+        (email == 'a' && password == 'a') ?
             [console.warn("Login success"),
-            setStatus(false) ]
-        : 
+            setStatus(false),
+            signIn(email, password)]
+
+            :
             [console.warn("Login fail"),
             setStatus(true)]
     }
 
-    const onGoogleSignInPress =() =>{
+    const onGoogleSignInPress = () => {
         console.warn("Google");
     }
 
-    const onFacebookSignInPress =() =>{
+    const onFacebookSignInPress = () => {
         console.warn("Facebook");
     }
 
-    const onForgotPasswordPress =() =>{
+    const onForgotPasswordPress = () => {
         console.warn("Forgot password");
     }
 
-    const onSignUpPress =() =>{
+    const onToSignUpPress = () => {
+        setEmail("");
+        setPassword("");
+        setStatus();
         navigation.navigate("Sign Up")
     }
 
@@ -44,15 +51,15 @@ const SignInScreen = ({navigation}) => {
             <Image style={styles.logo} source={Logo} />
             <Text style={styles.textHeader}>Welcome to Lafyuu</Text>
             <Text style={styles.textSubHeader}>Sign in to continue</Text>
-            
+
             <CustomInput style={styles.inputFirst}
                 placeholder={"Email"}
                 imageLink={icon_email}
                 value={email}
                 setValue={setEmail}
-                mTop={24} 
+                mTop={24}
                 hasError={status}
-                inputType={"email"}/>
+                inputType={"email"} />
 
             <CustomInput
                 placeholder={"Password"}
@@ -61,14 +68,14 @@ const SignInScreen = ({navigation}) => {
                 setValue={setPassword}
                 isSecure={true}
                 hasError={status} />
-            {status == true ? 
-            <Text style={styles.textError}>Oops! Username or Password is incorrect</Text>
-            : 
-            <></>}
+            {status == true ?
+                <Text style={styles.textError}>Oops! Username or Password is incorrect</Text>
+                :
+                <></>}
 
-            <CustomButton 
-            text={"Sign In"}
-            onPress={onSignInPress}
+            <CustomButton
+                text={"Sign In"}
+                onPress={onSignInPress}
             />
 
             <View style={styles.rowContainer}>
@@ -81,28 +88,28 @@ const SignInScreen = ({navigation}) => {
                 text={"Login with Google"}
                 imageLink={icon_google}
                 type={"SECONDARY"}
-                onPress={onGoogleSignInPress}/>
+                onPress={onGoogleSignInPress} />
 
             <CustomButton
                 text={"Login with Facebook"}
                 imageLink={icon_facebook}
                 type={"SECONDARY"}
                 mTop={8}
-                onPress={onFacebookSignInPress}/>
+                onPress={onFacebookSignInPress} />
 
-            <CustomButton 
-            text={"Forgot password?"}
-            type={"TERTIARY"}
-            mTop={32}
-            onPress={onForgotPasswordPress}/>
+            <CustomButton
+                text={"Forgot password?"}
+                type={"TERTIARY"}
+                mTop={32}
+                onPress={onForgotPasswordPress} />
 
             <View style={styles.rowContainer}>
-            <Text style = {styles.textSignUp}>Don't have an account? </Text>
-            <CustomButton 
-            text={"Sign Up"}
-            type={"TERTIARY"}
-            mTop={8}
-            onPress={onSignUpPress}/>
+                <Text style={styles.textSignUp}>Don't have an account? </Text>
+                <CustomButton
+                    text={"Sign Up"}
+                    type={"TERTIARY"}
+                    mTop={8}
+                    onPress={onToSignUpPress} />
             </View>
 
         </View>
@@ -117,7 +124,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#fff',
     },
-    
+
     logo: {
         marginTop: 112
     },
@@ -134,45 +141,45 @@ const styles = StyleSheet.create({
         color: '#9098B1',
         paddingTop: 8
     },
-    rowContainer:{
-        flexDirection:'row',
+    rowContainer: {
+        flexDirection: 'row',
         alignItems: 'center',
-        marginTop:21,
-        
+        marginTop: 21,
+
     },
-    textOption:{
-        color:'#9098B1',
-        height:'100%',
-        width:'20%',
-        textAlign:'center',
-        fontSize:14,  
-        paddingHorizontal:21,
-        letterSpacing:0.5,
-        fontWeight:700
+    textOption: {
+        color: '#9098B1',
+        height: '100%',
+        width: '20%',
+        textAlign: 'center',
+        fontSize: 14,
+        paddingHorizontal: 21,
+        letterSpacing: 0.5,
+        fontWeight: 700
     },
-    line:{
-        width:'35%',
-        borderBottomWidth:StyleSheet.hairlineWidth,
-        borderColor:'#EBF0FF'
+    line: {
+        width: '35%',
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderColor: '#EBF0FF'
     },
-    textSignUp:{
-        marginTop:8,
-        justifyContent:'center',
-        alignContent:'center',
-        alignItems:'center',
-        fontSize:12,
-        letterSpacing:0.5,
-        fontWeight:700
+    textSignUp: {
+        marginTop: 8,
+        justifyContent: 'center',
+        alignContent: 'center',
+        alignItems: 'center',
+        fontSize: 12,
+        letterSpacing: 0.5,
+        fontWeight: 700
     },
-    
-    textError:{
-        color:'#FB7181',
-        fontWeight:700,
-        marginTop:8,
-        alignSelf:'flex-start',
+
+    textError: {
+        color: '#FB7181',
+        fontWeight: 700,
+        marginTop: 8,
+        alignSelf: 'flex-start',
         paddingStart: '5%'
     }
-    
-    
+
+
 
 })

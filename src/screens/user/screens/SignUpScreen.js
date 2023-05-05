@@ -7,19 +7,29 @@ import icon_email from '../../../assets/images/systemIcon/24px/Message.png';
 import icon_password from '../../../assets/images/systemIcon/24px/Password.png';
 import icon_user from '../../../assets/images/systemIcon/24px/User.png';
 
-const SignUpScreen = ({navigation}) => {
+const SignUpScreen = ({ navigation }) => {
   const [fullname, setFullname] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
+  const [fullnameStatus, setFullnameStatus] = useState();
   const [emailStatus, setEmailStatus] = useState();
   const [passwordStatus, setPasswordStatus] = useState();
   const [confirmPasswordStatus, setConfirmPasswordStatus] = useState();
 
-  const onSignInPress = () => {
+  const onToSignInPress = () => {
     navigation.goBack();
   }
-  
+
+  const onSignUpPress = () => {
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+    fullname ? setFullnameStatus(false) : setFullnameStatus(true);
+    email ? setEmailStatus(false) : setEmailStatus(true);
+    //reg.test(email) ? setEmailStatus(false) : setEmailStatus(false)
+    password ? setPasswordStatus(false) : setPasswordStatus(true);
+    confirmPassword ? setConfirmPasswordStatus(false) : setConfirmPasswordStatus(true);
+  }
+
   return (
     <View style={styles.container}>
       <Image style={styles.logo} source={Logo} />
@@ -32,14 +42,23 @@ const SignUpScreen = ({navigation}) => {
         value={fullname}
         setValue={setFullname}
         mTop={24}
-         />
+        hasError={fullnameStatus}
+      />
+      {fullnameStatus == true ?
+        <Text style={styles.textError}>Fullname cannot be empty</Text>
+        : <></>}
 
       <CustomInput style={styles.inputFirst}
         placeholder={"Email"}
         imageLink={icon_email}
         value={email}
         setValue={setEmail}
+        hasError={emailStatus}
       />
+
+      {emailStatus == true ?
+        <Text style={styles.textError}>Email cannot be empty</Text>
+        : <></>}
 
       <CustomInput
         placeholder={"Password"}
@@ -47,7 +66,11 @@ const SignUpScreen = ({navigation}) => {
         value={password}
         setValue={setPassword}
         isSecure={true}
-        />
+        hasError={passwordStatus}
+      />
+      {passwordStatus == true ?
+        <Text style={styles.textError}>Password cannot be empty</Text>
+        : <></>}
 
       <CustomInput
         placeholder={"Confirm Password"}
@@ -55,11 +78,16 @@ const SignUpScreen = ({navigation}) => {
         value={confirmPassword}
         setValue={setConfirmPassword}
         isSecure={true}
+        hasError={confirmPasswordStatus}
       />
+
+      {confirmPasswordStatus == true ?
+        <Text style={styles.textError}>Confirm password cannot be empty</Text>
+        : <></>}
 
       <CustomButton
         text={"Sign Up"}
-       
+        onPress={onSignUpPress}
       />
 
       <View style={styles.rowContainer}>
@@ -68,8 +96,8 @@ const SignUpScreen = ({navigation}) => {
           text={"Sign In"}
           type={"TERTIARY"}
           mTop={8}
-          onPress={onSignInPress}
-           />
+          onPress={onToSignInPress}
+        />
       </View>
 
     </View>

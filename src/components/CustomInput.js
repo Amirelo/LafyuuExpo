@@ -2,13 +2,10 @@ import { StyleSheet, Text, View,Image } from 'react-native'
 import React, { useState } from 'react'
 import { TextInput } from 'react-native'
 
-const CustomInput = ({value, setValue, placeholder, imageLink,mTop, isSecure, hasError, inputType}) => {
+const CustomInput = ({value, setValue, placeholder, imageLink,mTop, isSecure, hasError, inputType, width}) => {
   const [isSelected, setIsSelected] = useState(false);
-  const [containError, setContainError] = useState(hasError);
   const onTextInputPressIn = () =>{
     setIsSelected(true);
-    setContainError(false);
-    console.warn(hasError);
   }
 
   const onTextInputPressOut = () =>{
@@ -19,8 +16,9 @@ const CustomInput = ({value, setValue, placeholder, imageLink,mTop, isSecure, ha
     <View  style={[
         styles.container,
         mTop ? {marginTop:mTop}: {} ,
-        containError ==true ? styles.inputFailAuthen : styles.inputNormal,
+        hasError? styles.inputFailAuthen : {},
         isSelected ? styles.inputSelected : {},
+        width ? {width:width}: {},
          ]}>
         <Image style={styles.icon} source={imageLink}/>
         <TextInput 
@@ -48,6 +46,7 @@ const styles = StyleSheet.create({
         borderWidth:1,
         alignItems:'center',
         borderRadius: 5,
+        borderColor: '#EBF0FF',
     },
     icon:{
        marginStart:18,
@@ -58,13 +57,10 @@ const styles = StyleSheet.create({
         fontSize:12,
         width: '100%',
         height: '100%',
+        
     },
     inputSelected:{
       borderColor: '#40BFFF',
-    },
-
-    inputStopSelection:{
-      borderColor: '#EBF0FF'
     },
     inputFailAuthen:{
       borderColor: '#FB7181'
