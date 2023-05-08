@@ -8,7 +8,7 @@ const CategoryItem = ({ imageLink, text }) => {
             <View style={styles.imageContainer}>
                 <Image style={styles.image} source={imageLink} />
             </View>
-            <Text style={styles.text}>{text}</Text>
+            <Text numberOfLines={2} style={styles.text}>{text}</Text>
         </TouchableOpacity>
     )
 }
@@ -18,9 +18,10 @@ export default CategoryItem
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        width: 70,
+        width: 74,
         height: 108,
-        marginHorizontal: 8
+        marginHorizontal: 8,
+        marginTop:16,
     },
     imageContainer: {
         width: 70,
@@ -42,6 +43,6 @@ const styles = StyleSheet.create({
         fontWeight: 400,
         lineHeight: 15,
         letterSpacing: 0.5,
-        textAlign: 'center'
+        textAlign: 'center',
     }
 })

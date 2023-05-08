@@ -1,11 +1,8 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
 import React, { useState } from 'react';
-import Logo from '../../../assets/images/logo.png';
 import CustomInput from '../../../components/CustomInput';
 import CustomButton from '../../../components/CustomButton';
-import icon_email from '../../../assets/images/systemIcon/24px/Message.png';
-import icon_password from '../../../assets/images/systemIcon/24px/Password.png';
-import icon_user from '../../../assets/images/systemIcon/24px/User.png';
+import * as images from '../../../assets/images'
 
 const SignUpScreen = ({ navigation }) => {
   const [fullname, setFullname] = useState();
@@ -32,13 +29,13 @@ const SignUpScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Image style={styles.logo} source={Logo} />
+      <Image style={styles.logo} source={images.logo} />
       <Text style={styles.textHeader}>Let's get started</Text>
       <Text style={styles.textSubHeader}>Create a new account</Text>
 
       <CustomInput style={styles.inputFirst}
         placeholder={"Fullname"}
-        imageLink={icon_user}
+        imageLink={images.ic_nav_user}
         value={fullname}
         setValue={setFullname}
         mTop={24}
@@ -50,7 +47,7 @@ const SignUpScreen = ({ navigation }) => {
 
       <CustomInput style={styles.inputFirst}
         placeholder={"Email"}
-        imageLink={icon_email}
+        imageLink={images.ic_message}
         value={email}
         setValue={setEmail}
         hasError={emailStatus}
@@ -62,7 +59,7 @@ const SignUpScreen = ({ navigation }) => {
 
       <CustomInput
         placeholder={"Password"}
-        imageLink={icon_password}
+        imageLink={images.ic_password}
         value={password}
         setValue={setPassword}
         isSecure={true}
@@ -74,7 +71,7 @@ const SignUpScreen = ({ navigation }) => {
 
       <CustomInput
         placeholder={"Confirm Password"}
-        imageLink={icon_password}
+        imageLink={images.ic_password}
         value={confirmPassword}
         setValue={setConfirmPassword}
         isSecure={true}

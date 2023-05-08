@@ -3,7 +3,7 @@ import React from 'react'
 
 import { ImageBackground } from 'react-native'
 
-const ImageButton = ({ imageLink, onPress, mTop }) => {
+const ImageButton = ({ imageLink, onPress, mTop, }) => {
     return (
         <TouchableOpacity
             onPress={onPress}

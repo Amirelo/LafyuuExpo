@@ -9,6 +9,7 @@ import { AuthContext } from './src/components/AuthContext';
 import HomeScreen from './src/screens/product/screens/HomeScreen';
 import ExploreScreen from './src/screens/product/screens/ExploreScreen';
 import OfferScreen from './src/screens/product/screens/OfferScreen';
+import FavoriteScreen from './src/screens/product/screens/FavoriteScreen';
 import AccountScreen from './src/screens/product/screens/AccountScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as images from './src/assets/images';
@@ -93,6 +94,9 @@ export default function App() {
     []
   );
 
+
+  
+
   return (
     <AuthContext.Provider value={authContext}>
       <NavigationContainer>
@@ -104,7 +108,8 @@ export default function App() {
           </Stack.Navigator>
           :
           <Tab.Navigator initialRouteName='Home' screenOptions={{ headerShown: false }}>
-            <Tab.Screen name="Home" component={HomeScreen} />
+            <Tab.Screen name="Home" component={HomeScreen} >
+            </Tab.Screen>
             <Tab.Screen name="Explore" component={ExploreScreen} />
             <Tab.Screen name="Cart" component={CartScreen} />
             <Tab.Screen name="Offer" component={OfferScreen} />

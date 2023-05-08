@@ -1,13 +1,10 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
 import React, { useContext, useState } from 'react';
-import Logo from '../../../assets/images/logo.png';
 import CustomInput from '../../../components/CustomInput';
 import CustomButton from '../../../components/CustomButton';
-import icon_email from '../../../assets/images/systemIcon/24px/Message.png';
-import icon_password from '../../../assets/images/systemIcon/24px/Password.png';
-import icon_google from '../../../assets/images/OtherIcon/Google.png';
-import icon_facebook from '../../../assets/images/OtherIcon/Facebook.png';
 import { AuthContext } from '../../../components/AuthContext';
+
+import * as images from '../../../assets/images'
 
 const SignInScreen = ({ navigation }) => {
     const [email, setEmail] = useState();
@@ -48,13 +45,13 @@ const SignInScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Image style={styles.logo} source={Logo} />
+            <Image style={styles.logo} source={images.logo} />
             <Text style={styles.textHeader}>Welcome to Lafyuu</Text>
             <Text style={styles.textSubHeader}>Sign in to continue</Text>
 
             <CustomInput style={styles.inputFirst}
                 placeholder={"Email"}
-                imageLink={icon_email}
+                imageLink={images.ic_message}
                 value={email}
                 setValue={setEmail}
                 mTop={24}
@@ -63,7 +60,7 @@ const SignInScreen = ({ navigation }) => {
 
             <CustomInput
                 placeholder={"Password"}
-                imageLink={icon_password}
+                imageLink={images.ic_password}
                 value={password}
                 setValue={setPassword}
                 isSecure={true}
@@ -86,13 +83,13 @@ const SignInScreen = ({ navigation }) => {
 
             <CustomButton
                 text={"Login with Google"}
-                imageLink={icon_google}
+                imageLink={images.ic_google}
                 type={"SECONDARY"}
                 onPress={onGoogleSignInPress} />
 
             <CustomButton
                 text={"Login with Facebook"}
-                imageLink={icon_facebook}
+                imageLink={images.ic_facebook}
                 type={"SECONDARY"}
                 mTop={8}
                 onPress={onFacebookSignInPress} />

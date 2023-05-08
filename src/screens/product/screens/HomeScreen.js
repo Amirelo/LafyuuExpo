@@ -1,22 +1,12 @@
-import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native'
+import { StyleSheet, Text, View, Image, ImageBackground,ScrollView } from 'react-native'
 import React, { useContext } from 'react'
+import * as images from '../../../assets/images';
 import CustomButton from '../../../components/CustomButton'
 import { AuthContext } from '../../../components/AuthContext'
 import CustomInput from '../../../components/CustomInput'
-import icon_search from '../../../assets/images/systemIcon/24px/Search.png'
-import icon_heart from '../../../assets/images/systemIcon/24px/love.png'
-import icon_notification from '../../../assets/images/systemIcon/24px/Notification.png'
-import icon_slide from '../../../assets/images/slide.png'
-import icon_slideInactive from '../../../assets/images/slide_inactive.png'
-import img_promote from '../../../assets/images/promote.png'
-import * as images from '../../../assets/images';
-
-import icon_manShirt from '../../../assets/images/ProductIcon/24px/Tshirt.png';
-import icon_dress from '../../../assets/images/ProductIcon/24px/dress.png';
 import ImageButton from '../../../components/ImageButton'
 import CustomTextBox from '../../../components/CustomTextBox'
 import CategoryItem from '../../../components/CategoryItem'
-import { ScrollView } from 'react-native'
 import ProductItem from '../../../components/ProductItem'
 
 const HomeScreen = () => {
@@ -28,19 +18,19 @@ const HomeScreen = () => {
                     <View style={[styles.rowContainer, { marginTop: 60 }]}>
                         <CustomInput
                             placeholder={"Search Product"}
-                            imageLink={icon_search}
+                            imageLink={images.ic_nav_search}
                             width={"60%"} />
 
                         <ImageButton
-                            imageLink={icon_heart} />
+                            imageLink={images.ic_love} />
 
                         <ImageButton
-                            imageLink={icon_notification} />
+                            imageLink={images.ic_notification} />
 
 
                     </View>
                     <ImageBackground style={styles.imageBackground}
-                        source={img_promote}>
+                        source={images.img_promote_1}>
                         <Text style={styles.textPromote}>Super Flash Sale 50% Off</Text>
                         <View style={[styles.rowContainer, styles.rowViewPromote]}>
                             <CustomTextBox hasBox={true} value={"08"} />
@@ -52,11 +42,11 @@ const HomeScreen = () => {
                     </ImageBackground>
 
                     <View style={[styles.rowContainer, styles.rowViewSlider]}>
-                        <Image source={icon_slideInactive}></Image>
-                        <Image source={icon_slideInactive}></Image>
-                        <Image source={icon_slide}></Image>
-                        <Image source={icon_slideInactive}></Image>
-                        <Image source={icon_slideInactive}></Image>
+                        <Image source={images.ic_dotInactive}></Image>
+                        <Image source={images.ic_dotInactive}></Image>
+                        <Image source={images.ic_dot}></Image>
+                        <Image source={images.ic_dotInactive}></Image>
+                        <Image source={images.ic_dotInactive}></Image>
                     </View>
 
                     <View style={styles.itemListContainer}>
@@ -262,6 +252,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     itemListHorizontalContainer:{
+        marginTop:32,
         width: '90%',
         alignItems: 'center',
         justifyContent:'space-around',

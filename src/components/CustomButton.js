@@ -2,23 +2,27 @@ import { Button, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-n
 import React from 'react'
 
 
-const CustomButton = ({text, imageLink, type, mTop, onPress, fontSize}) => {
+const CustomButton = ({text, imageLink, type, mTop, onPress, fontSize, bgColor, txtAlign, isBlue}) => {
   return (
     <TouchableOpacity 
         onPress = {onPress}
         style = {[
             styles.button,
             type ? styles[`buttonStyle_${type}`] : styles['buttonStyle_PRIMARY'],
-            mTop ? {marginTop:mTop} : {} ]}>
+            mTop!=null ? {marginTop:mTop} : {},
+            bgColor ? {backgroundColor: bgColor}: {} ]}>
         {imageLink? 
-        <Image style={styles.image}
+        <Image style={[styles.image,
+            txtAlign ? {position:'relative'} : {},
+            isBlue ? {tintColor:'#40BFFF'} : {}]}
             source={imageLink}/>: <></>
         }    
         <Text
             style={[
                 styles.text,
                 type ? styles[`textStyle_${type}`] : styles['textStyle_PRIMARY'],
-                fontSize ? {fontSize:fontSize}: {} ]} 
+                fontSize ? {fontSize:fontSize}: {},
+                txtAlign ? {textAlign: txtAlign} : {} ]} 
                 >{text}</Text>
     </TouchableOpacity>
   )
@@ -34,8 +38,6 @@ const styles = StyleSheet.create({
         marginTop:16,
         borderRadius:5,
         alignItems:'center',
-        
-
     },
     buttonStyle_PRIMARY:{
         elevation:10,
@@ -77,6 +79,6 @@ const styles = StyleSheet.create({
     image:{
         alignSelf:'center',
         marginHorizontal: 16,
-        position:'absolute'
+        position:'absolute',
     }
 })

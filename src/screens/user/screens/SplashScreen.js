@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
-import Logo from '../../../assets/images/logo-splash.png';
+import { logo_splash } from '../../../assets/images';
 
 const SplashScreen = ({navigation}) => {
 
@@ -13,7 +13,7 @@ const SplashScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-        <Image source={Logo}/>
+        <Image source={logo_splash}/>
     </View>
   )
 }
